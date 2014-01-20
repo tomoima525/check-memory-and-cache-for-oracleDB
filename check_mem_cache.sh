@@ -1,25 +1,25 @@
-#!/bin/ksh
+ï»¿#!/bin/ksh
 #**************************************************************************************
-#* Oracle«”\î•ñæ“¾ƒVƒFƒ‹
+#* Oracleæ€§èƒ½æƒ…å ±å–å¾—ã‚·ã‚§ãƒ«
 #* Created by Tomoaki Imai
-#* $1 SLEEP_SEC æ“¾ŠÔŠu
-#* $2 LOOP æ“¾‰ñ”
+#* $1 SLEEP_SEC å–å¾—é–“éš”
+#* $2 LOOP å–å¾—å›æ•°
 #* $3 SID ORACLE_SID
-#* created on 2012/1/12 V‹K
-#* updated 2013/5/27 XV@LOOP‚ÆSLEEP_SEC‚ğˆø”‰»
-#* updated 2013/8/30 XV@ORACLE_SID‚ğˆø”‰»
+#* created on 2012/1/12 æ–°è¦
+#* updated 2013/5/27 æ›´æ–°ã€€LOOPã¨SLEEP_SECã‚’å¼•æ•°åŒ–
+#* updated 2013/8/30 æ›´æ–°ã€€ORACLE_SIDã‚’å¼•æ•°åŒ–
 #*
 #**************************************************************************************
 #-------------------------------------------------------------------------------------
 # Set Environment
 #-------------------------------------------------------------------------------------
-#ŠÂ‹«ƒtƒ@ƒCƒ‹ƒfƒBƒŒƒNƒgƒŠ
+#ç’°å¢ƒãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 ENV_DIR=/home/oracle/tmp/mem_test2
 
-#“ú•t
+#æ—¥ä»˜
 DATE1=`date "+%Y%m%d"`
 
-#æ“¾ŠÔŠu(ˆø”‚ğ“Ç‚İ‚İ)
+#å–å¾—é–“éš”(å¼•æ•°ã‚’èª­ã¿è¾¼ã¿)
 SLEEP_SEC=${1}
 LOOP_MAX=${2}
 SID=${3}
@@ -30,7 +30,7 @@ COUNT=0
 
 function f_check
 {
-#ˆø”ƒ`ƒFƒbƒN
+#å¼•æ•°ãƒã‚§ãƒƒã‚¯
 if [[ -z $SLEEP_SEC ]] ; then
    echo "sleep sec is not set."
     exit 99
@@ -48,7 +48,7 @@ fi
 
 
 
-#İ’èƒtƒ@ƒCƒ‹ƒ`ƒFƒbƒN
+#è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚§ãƒƒã‚¯
 _MSG_NOTFOUND="environment file not found"
 _ENV_FILE=check_mem.env
 
@@ -91,13 +91,13 @@ return 0
 # Main Process
 #-------------------------------------------------------------------------------------
 
-# ‹N“®ƒ`ƒFƒbƒN
+# èµ·å‹•ãƒã‚§ãƒƒã‚¯
 f_check
 
 export ORACLE_SID=${SID}
-#ÀsƒfƒBƒŒƒNƒgƒŠ‚ÉˆÚ“®
+#å®Ÿè¡Œãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ç§»å‹•
 cd ${EXE_DIR}
-#mem_cache.log‚ğ¶¬‚·‚é
+#mem_cache.logã‚’ç”Ÿæˆã™ã‚‹
 if [ ! ${SID}_${DATE1}.log ]; then
 touch ${SID}_${DATE1}.log
 fi
@@ -128,7 +128,7 @@ done
 
 echo "exit" | ${ORACLE_HOME}/bin/sqlplus -s /nolog
 
-#tmpƒtƒ@ƒCƒ‹íœ
+#tmpãƒ•ã‚¡ã‚¤ãƒ«å‰Šé™¤
 rm mem_cache_tmp.log
 
 exit 0
